@@ -1,9 +1,24 @@
 const express = require("express");
 const axios = require("axios");
+const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
-const port = 3000 || process.env.PORT;
+const port = process.env.PORT || 3000;
+
+const allowedOrigins = ["http://dealhunterapp.com", "http://dealhunterapp.com", "http://test.dealhunterapp.com"];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 
 const apiRAWGKey = process.env.API_RAWG_KEY;
 const searchGames = "https://api.rawg.io/api/games";
