@@ -6,7 +6,12 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-const allowedOrigins = ["http://dealhunterapp.com", "http://dealhunterapp.com", "http://test.dealhunterapp.com"];
+const allowedOrigins = [
+  "http://dealhunterapp.com",
+  "https://dealhunterapp.com",
+  "http://www.dealhunterapp.com",
+  "https://www.dealhunterapp.com",
+];
 
 const corsOptions = {
   origin: function (origin, callback) {
